@@ -13,7 +13,7 @@ def sample_beta_0(y, x, beta_1, beta_2, tau, mu_0, tau_0):
     return np.random.normal(mean, 1.0 / np.sqrt(precision))
 
 # ##############################################################################
-# Returns a single sample from the conditional distribution p(beta_1 | beta_0, beta_2, tau, mu_0, tau_0, X, y)
+# Returns a single sample from the conditional distribution p(beta_1 | beta_0, beta_2, tau, mu_1, tau_1, X, y)
 # ##############################################################################
 def sample_beta_1(y, x, beta_0, beta_2, tau, mu_1, tau_1):
     N = len(y)
@@ -22,7 +22,7 @@ def sample_beta_1(y, x, beta_0, beta_2, tau, mu_1, tau_1):
     return np.random.normal(mean, 1 / np.sqrt(precision))
 
 # ##############################################################################
-# Returns a single sample from the conditional distribution p(beta_2 | beta_0, beta_1, tau, mu_0, tau_0, X, y)
+# Returns a single sample from the conditional distribution p(beta_2 | beta_0, beta_1, tau, mu_2, tau_2, X, y)
 # ##############################################################################
 def sample_beta_2(y, x, beta_0, beta_1, tau, mu_2, tau_2):
     N = len(y)
@@ -31,7 +31,7 @@ def sample_beta_2(y, x, beta_0, beta_1, tau, mu_2, tau_2):
     return np.random.normal(mean, 1 / np.sqrt(precision))
 
 # ##############################################################################
-# Returns a single sample from the conditional distribution p(tau | beta_0, beta_1, beta_2, mu_0, tau_0, X, y)
+# Returns a single sample from the conditional distribution p(tau | beta_0, beta_1, beta_2, alpha, beta, X, y)
 # ##############################################################################
 def sample_tau(y, x, beta_0, beta_1, beta_2, alpha, beta):
     N = len(y)
