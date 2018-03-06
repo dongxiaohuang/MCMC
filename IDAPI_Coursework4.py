@@ -11,7 +11,7 @@ def sample_beta_0(y, x, beta_1, beta_2, tau, mu_0, tau_0):
     assert len(x) == N
     # TODO: Task 1 - Implement a sample from the conditional distribution for beta_0
     precision = tau_0 + tau*N
-    mean = tau_0*mu_0 + tau* np.sum(y - beta_1*x)
+    mean = tau_0*mu_0 + tau* np.sum(y - beta_1*x - beta_2*x*x)
     mean /= precision
     return np.random.normal(mean, 1.0 / np.sqrt(precision))
 
@@ -23,7 +23,7 @@ def sample_beta_1(y, x, beta_0, beta_2, tau, mu_1, tau_1):
     assert len(x) == N
     # TODO: Task 2 - Implement a sample from the conditional distribution for beta_1
     precision = tau_1 + tau * np.sum(x**2)
-    mean = tau_1 * mu_1 + tau * np.sum((y - beta_0)*x)
+    mean = tau_1 * mu_1 + tau * np.sum((y - beta_0 - beta_2 * x * x)*x)
     mean /= precision
     return np.random.normal(mean, 1 / np.sqrt(precision))
 
@@ -35,8 +35,8 @@ def sample_beta_2(y, x, beta_0, beta_1, tau, mu_2, tau_2):
     assert len(x) == N
     # TODO: Task 3 - Implement a sample from the conditional distribution for beta_2
     precision = tau_2 + tau * np.sum(x**4)
-    resid = (y - beta_0 - beta_1*x)*x
-    mean = tau_2 * mu_2 + tau * np.sum(resid ** 2)
+    resid = (y - beta_0 - beta_1*x)*x*x
+    mean = tau_2 * mu_2 + tau * np.sum(resid)
     mean /= precision
     return np.random.normal(mean, 1 / np.sqrt(precision))
 
