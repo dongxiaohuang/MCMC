@@ -47,7 +47,7 @@ def sample_tau(y, x, beta_0, beta_1, beta_2, alpha, beta):
     N = len(y)
     # TODO: Task 4 - Implement a sample from the conditional distribution for tau
     alpha_new = alpha + N/2
-    resid = y - beta_0 - beta_1 * x
+    resid = y - beta_0 - beta_1 * x - beta_2 * x * x
     beta_new = beta + np.sum( resid**2 / 2 )
     return np.random.gamma(alpha_new, 1 / beta_new)
 
