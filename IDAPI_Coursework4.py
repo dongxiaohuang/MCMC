@@ -68,7 +68,7 @@ def gibbs(y, x, iters, init, hypers):
         # TODO: Task 5 - Implement a Gibbs sampler
         beta_0 = sample_beta_0(y, x, beta_1, beta_2, tau, hypers["mu_0"], hypers["tau_0"])
         beta_1 = sample_beta_1(y, x, beta_0, beta_2, tau, hypers["mu_1"], hypers["tau_1"])
-        beta_2 = sample_beta_1(y, x, beta_0, beta_1, tau, hypers["mu_2"], hypers["tau_2"])
+        beta_2 = sample_beta_2(y, x, beta_0, beta_1, tau, hypers["mu_2"], hypers["tau_2"])
         tau = sample_tau(y, x, beta_0, beta_1, beta_2, hypers["alpha"], hypers["beta"])
         trace[it, :] = np.array((beta_0, beta_1, beta_2, tau))
 
